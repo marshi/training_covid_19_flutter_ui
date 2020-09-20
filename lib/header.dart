@@ -44,7 +44,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
               children: [
                 Positioned(
                   right: 20,
-                  top: -widget.offset / 2,
+                  top: 20 - widget.offset / 2,
                   child: Text(
                     "All you need \nis stay at home",
                     style: TextStyle(
