@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
 import 'package:training_covid_19_flutter_ui/header.dart';
 
 void main() {
@@ -14,7 +16,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: StateNotifierProvider<OffsetStateNotifier, double>(
+        create: (context) => OffsetStateNotifier(0.0),
+        child: HomePage(),
+      ),
     );
   }
 }
@@ -26,14 +31,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   ScrollController _scrollController = ScrollController();
-  double _offset;
 
   @override
   void initState() {
     _scrollController.addListener(() {
-      setState(() {
-        _offset = _scrollController.offset;
-      });
+      context.read<OffsetStateNotifier>().setOffset(_scrollController.offset);
     });
     super.initState();
   }
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
         controller: _scrollController,
         child: Column(
           children: [
-            HeaderWidget(_offset),
+            HeaderWidget(),
             SizedBox(height: 1000),
           ],
         ),
