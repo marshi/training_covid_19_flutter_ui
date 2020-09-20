@@ -34,16 +34,19 @@ class HeaderWidget extends StatelessWidget {
         image: DecorationImage(image: AssetImage("assets/images/virus.png")),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SvgPicture.asset("assets/icons/menu.svg", height: 15),
+          Align(
+            child: SvgPicture.asset("assets/icons/menu.svg", height: 15),
+            alignment: Alignment.centerRight,
+          ),
           SizedBox(height: 30),
           Expanded(
             child: Stack(
               children: [
                 Positioned(
                   right: 20,
-                  top: 20 - context.watch<double>(),
+                  top: 20 - context.watch<double>() / 2,
                   child: Text(
                     "All you need \nis stay at home",
                     style: TextStyle(
@@ -62,6 +65,7 @@ class HeaderWidget extends StatelessWidget {
                     alignment: Alignment.topCenter,
                   ),
                 ),
+                Text("aiueo"),
               ],
             ),
           )
