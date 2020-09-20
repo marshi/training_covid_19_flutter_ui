@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Header extends StatelessWidget {
+class HeaderWidget extends StatefulWidget {
+  final double offset;
+
+  HeaderWidget(this.offset);
+
+  @override
+  _HeaderWidgetState createState() => _HeaderWidgetState();
+}
+
+class _HeaderWidgetState extends State<HeaderWidget> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(widget.offset);
     return Container(
       width: double.infinity,
       height: 350,
@@ -29,7 +44,7 @@ class Header extends StatelessWidget {
               children: [
                 Positioned(
                   right: 20,
-                  top: 10,
+                  top: -widget.offset / 2,
                   child: Text(
                     "All you need \nis stay at home",
                     style: TextStyle(
@@ -40,6 +55,7 @@ class Header extends StatelessWidget {
                   ),
                 ),
                 Positioned(
+                  top: widget.offset,
                   width: 230,
                   child: SvgPicture.asset(
                     "assets/icons/Drcorona.svg",
